@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     int evidenceRecolected;
 
     //const float awarenessTime = 0.01f;
-    const float awarenessTime = 0.1f;
+    const float awarenessTime = 0.05f;
 
     bool isSomethingSelected = false;
     [HideInInspector]public bool isGameOver = false;

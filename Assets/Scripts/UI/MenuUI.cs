@@ -12,6 +12,7 @@ public struct MenuUI : CommonUI
     public Button playBtn;
     public Button creditsBtn;
     public Button settingsBtn;
+    public Button exitBtn;
 
     public void ShowPanel(bool needToShowPanel)
     {
@@ -24,5 +25,6 @@ public struct MenuUI : CommonUI
         playBtn.GetComponentInChildren<TextMeshProUGUI>().text = staticStrings[1];
         creditsBtn.GetComponentInChildren<TextMeshProUGUI>().text = staticStrings[2];
         settingsBtn.GetComponentInChildren<TextMeshProUGUI>().text = staticStrings[3];
+        exitBtn.GetComponentInChildren<TextMeshProUGUI>().text = staticStrings[4];
     }
 }

@@ -49,7 +49,11 @@ public class MenuManager : MonoBehaviour
     {
         menuUI.playBtn.onClick.AddListener(PlayGame);
         menuUI.creditsBtn.onClick.AddListener(ShowCredits);
-
+#if UNITY_WEBGL
+        menuUI.exitBtn.gameObject.SetActive(false);
+#else
+        menuUI.exitBtn.onClick.AddListener(Application.Quit);
+#endif
         creditsUI.closeButton.onClick.AddListener(ShowMenu);
     }
 

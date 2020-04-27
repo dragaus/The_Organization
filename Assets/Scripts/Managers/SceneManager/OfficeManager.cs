@@ -36,6 +36,7 @@ public class OfficeManager : MonoBehaviour
     bool isTyping;
     bool canPressOk;
     bool needInput;
+    bool endTyping;
 
     string playerName;
     string favoriteColour;
@@ -109,7 +110,19 @@ public class OfficeManager : MonoBehaviour
     void SetNextTyping()
     {
         chatIndex++;
-        StartTyping();
+        if (chatIndex < chatStrings.Count - 1)
+        {
+            StartTyping();
+            return;
+        }
+
+        if (GameSettingsManager.currentLevel >= 3)
+        {
+            StartTyping(GoToMenu);
+            return;
+        }
+
+        StartTyping(GoToNextLevel);
     }
 
     void SetNextTyping(UnityAction action)
@@ -137,6 +150,7 @@ public class OfficeManager : MonoBehaviour
                 if (typeIndex >= messageLenght - 3)
                 {
                     EndTyping();
+                    endTyping = true;
                 }
                 typeTime = 0;
             }
@@ -145,6 +159,7 @@ public class OfficeManager : MonoBehaviour
             {
 
                 EndTyping();
+                endTyping = true;
             }
         }
     }
@@ -163,7 +178,7 @@ public class OfficeManager : MonoBehaviour
 
     void AcceptMessage()
     {
-        if (!isTyping)
+        if (!isTyping && !endTyping)
         {
             if (canPressOk && Input.GetKeyDown(KeyCode.Return))
             {
@@ -181,6 +196,7 @@ public class OfficeManager : MonoBehaviour
     {
         TypeTheMessage();
         AcceptMessage();
+        endTyping = false;
     }
 
     bool NeedTutorialLevelInputManager(string input)
@@ -233,5 +249,10 @@ public class OfficeManager : MonoBehaviour
     {
         GameSettingsManager.currentLevel++;
         SceneManager.LoadScene(sceneName);
+    }
+
+    void GoToMenu()
+    {
+        LoaderManager.LoadScene(MenuManager.sceneName);
     }
 }

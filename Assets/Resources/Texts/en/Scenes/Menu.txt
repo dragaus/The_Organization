@@ -2,3 +2,4 @@ The Organization
 Play
 Credits
 Settings
+Exit
