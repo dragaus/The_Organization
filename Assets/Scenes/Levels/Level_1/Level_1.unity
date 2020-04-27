@@ -1358,11 +1358,11 @@ MonoBehaviour:
   speed: 5
   zoomSpeed: 50
   limits:
-  - minLimit: 0
-    maxLimit: 0
+  - minLimit: -8
+    maxLimit: 8
   - minLimit: 25
     maxLimit: 40
-  - minLimit: 0
+  - minLimit: -18
     maxLimit: 0
 --- !u!1001 &1003164973
 PrefabInstance:
