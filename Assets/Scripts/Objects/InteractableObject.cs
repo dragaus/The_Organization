@@ -1,19 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractableObject : MonoBehaviour
 {
+    float workedTime;
     public float workingTime;
     public Transform[] boxPositions;
 
     const float widthOfOutline = 0.05f;
+    const float heightOverObject = 1.5f;
     Renderer[] renders;
-    List<AIPlayer> cleanersInteracting = new List<AIPlayer>();
+    List<AICleaner> cleanersInteracting = new List<AICleaner>();
+
+    public GameObject fillBar;
+    Image fillBarInstance;
+
+    TutorialManager tutoManager;
     void Start()
     {
         renders = GetComponentsInChildren<Renderer>();
         ChangeOutline(0);
+        tutoManager = FindObjectOfType<TutorialManager>();
+    }
+
+
+    void Update()
+    {
+
     }
 
     private void OnMouseEnter()
@@ -43,5 +58,30 @@ public class InteractableObject : MonoBehaviour
     public void GetAPerson(AICleaner person)
     {
         cleanersInteracting.Add(person);
+        if (fillBarInstance == null)
+        {         
+            var barPos = transform.position;
+            barPos.y += heightOverObject;
+            var barInstance = Instantiate(fillBar, barPos, fillBar.transform.rotation, GameObject.Find("World Canvas").transform);
+            fillBarInstance = barInstance.transform.GetChild(0).GetComponent<Image>();
+        }
+    }
+
+    public void GetWork()
+    {
+        workedTime += Time.deltaTime;
+        if (tutoManager != null && !tutoManager.AlienShipCanBeDestroyed())
+        {
+            return;
+        }
+        fillBarInstance.fillAmount = workedTime / workingTime;
+        if (workedTime >= workingTime)
+        {
+            foreach (var cleaner in cleanersInteracting)
+            {
+                cleaner.FreeThePlayer();
+            }
+            Destroy(fillBarInstance.transform.parent.gameObject);
+        }
     }
 }

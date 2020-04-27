@@ -135,4 +135,9 @@ public class TutorialManager : MonoBehaviour
         }
         NextTutorial();
     }
+
+    public bool AlienShipCanBeDestroyed()
+    {
+        return tutorialIndex > 13;
+    }
 }
