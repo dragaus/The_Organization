@@ -14,6 +14,7 @@ public class AICharacter : MonoBehaviour
 
     internal const string animIsMoving = "IsMoving";
     internal const string animIsWorking = "IsWorking";
+    internal const string animOffset = "Offset";
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,7 @@ public class AICharacter : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         anim = GetComponent<Animator>();
+        anim.SetFloat(animOffset, Random.Range(0f, 1f));
     }
 
     public virtual void MoveAgentToNewPos(Vector3 newPos)
