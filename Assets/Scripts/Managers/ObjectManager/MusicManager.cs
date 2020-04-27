@@ -15,6 +15,10 @@ public class MusicManager : MonoBehaviour
             instancesOfMusicManager++;
             DontDestroyOnLoad(this.gameObject);
         }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = volumeValue;
     }

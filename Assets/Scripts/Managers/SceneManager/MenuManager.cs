@@ -47,9 +47,15 @@ public class MenuManager : MonoBehaviour
 
     void SetPanelFunctions()
     {
-        menuUI.playBtn.onClick.AddListener(() => LoaderManager.LoadScene(OfficeManager.sceneName));
+        menuUI.playBtn.onClick.AddListener(PlayGame);
         menuUI.creditsBtn.onClick.AddListener(ShowCredits);
 
         creditsUI.closeButton.onClick.AddListener(ShowMenu);
+    }
+
+    void PlayGame()
+    {
+        GameSettingsManager.currentLevel = 0;
+        LoaderManager.LoadScene(OfficeManager.sceneName);
     }
 }

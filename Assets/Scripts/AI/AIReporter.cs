@@ -13,18 +13,20 @@ public class AIReporter : AICharacter
     float timeTrapped;
 
     Transform target;
-
+    GameManager manager;
     // Start is called before the first frame update
     void Start()
     {
         Initialization();
         isTrapped = FindObjectOfType<TutorialManager>();
         FindTheClosestCleaner();
+        manager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Work();
         Trapped();
         GoToTransform();
         EndMovement();
@@ -135,6 +137,14 @@ public class AIReporter : AICharacter
         if (!isMoving && !isTrapped && !isWorking)
         {
             Seeking();
+        }
+    }
+
+    internal void Work()
+    {
+        if (isWorking)
+        {
+            manager.UpdateAwareness();
         }
     }
 }

@@ -7,18 +7,25 @@ public class GameManager : MonoBehaviour
 {
     int evidenceToRecolect = 0;
     int evidenceRecolected;
-    public float time;
 
-    bool isGameStart = false;
+    //const float awarenessTime = 0.01f;
+    const float awarenessTime = 0.1f;
+
     bool isSomethingSelected = false;
-    public bool isGameOver = false;
+    [HideInInspector]public bool isGameOver = false;
 
     public const string sceneName = "Level_";
+    const string gameStaticStrings = "Scenes/Game";
 
     AIPlayer selectedPlayer;
 
     [SerializeField]
     GameObject[] boxes = null;
+
+    [SerializeField]
+    GameUI gameUI;
+    string loseString;
+    string winString;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +35,14 @@ public class GameManager : MonoBehaviour
         {
             evidenceToRecolect += interactable.AmountOfBoxes();
         }
-        Debug.Log($"Evidence to grab is {evidenceToRecolect}");
+
+        gameUI.Initialization();
+        gameUI.ShowPanel(!FindObjectOfType<TutorialManager>());
+        gameUI.SetStaticTexts(TextManager.TextsOfAsset(gameStaticStrings));
+        gameUI.UpdateEvidence(evidenceRecolected, evidenceToRecolect);
+        gameUI.UpdateAwarenessBar(GameSettingsManager.awerenessLevel);
+        gameUI.winBtn.onClick.AddListener(GoToOffice);
+        gameUI.loseBtn.onClick.AddListener(GoToMenu);
     }
 
     void FixedUpdate()
@@ -39,11 +53,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGameStart)
-        {
-            time -= Time.deltaTime;
-        }
-
+        if (isGameOver) return;
         if (isSomethingSelected)
         {
             if (Input.GetMouseButtonDown(0))
@@ -128,13 +138,36 @@ public class GameManager : MonoBehaviour
     public void GetEvidence()
     {
         evidenceRecolected++;
+        gameUI.UpdateEvidence(evidenceRecolected, evidenceToRecolect);
         if (evidenceRecolected >= evidenceToRecolect)
         {
             isGameOver = true;
             if (!FindObjectOfType<TutorialManager>())
             {
-                Debug.Log("End Game");
+                gameUI.winPanel.SetActive(true);
             }
         }
+    }
+
+    public void UpdateAwareness()
+    {
+        if (isGameOver) return;
+        GameSettingsManager.awerenessLevel += Time.deltaTime * awarenessTime;
+        gameUI.UpdateAwarenessBar(GameSettingsManager.awerenessLevel);
+        if (GameSettingsManager.awerenessLevel >= 1f)
+        {
+            isGameOver = true;
+            gameUI.losePanel.SetActive(true);
+        }
+    }
+
+    void GoToOffice()
+    {
+        LoaderManager.LoadScene(OfficeManager.sceneName);
+    }
+
+    void GoToMenu()
+    {
+        LoaderManager.LoadScene(MenuManager.sceneName);
     }
 }
