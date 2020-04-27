@@ -20,7 +20,7 @@ public class OfficeManager : MonoBehaviour
 
     [SerializeField]
     [Header("Sounds")]
-    AudioClip[] clips;
+    AudioClip[] clips = null;
     const float typingTime = 0.09f;
     float typeTime = 0f;
     int typeIndex = 0;
@@ -165,7 +165,6 @@ public class OfficeManager : MonoBehaviour
     {
         if (!isTyping)
         {
-            Debug.Log($"can press ok is {canPressOk}");
             if (canPressOk && Input.GetKeyDown(KeyCode.Return))
             {
                 if (!NeedTutorialLevelInputManager(officeUI.chatInput.text))

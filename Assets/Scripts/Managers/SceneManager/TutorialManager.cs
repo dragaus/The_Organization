@@ -9,12 +9,16 @@ public class TutorialManager : MonoBehaviour
     TutorialUI tutorialUI;
 
     [SerializeField]
-    AIPlayer cleaner;
+    AIPlayer cleaner = null;
     [SerializeField]
-    AIPlayer agent;
+    AIPlayer agent = null;
+    [SerializeField]
+    AIReporter reporter = null;
 
     [SerializeField]
-    InteractableObject ufo;
+    InteractableObject ufo = null;
+    [SerializeField]
+
 
     const string tutorialTextAssetDir = "Unique/Tutorial";
     const string staticStringDir = "Scenes/Tutorial";
@@ -24,7 +28,7 @@ public class TutorialManager : MonoBehaviour
     int tutorialIndex = 0;
 
     UnityAction tutorialAction;
-
+    GameManager manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +36,7 @@ public class TutorialManager : MonoBehaviour
         tutorialUI.SetStaticTexts(TextManager.TextsOfAsset(staticStringDir));
         SetNewText();
         tutorialUI.okBtn.onClick.AddListener(UnderstandTutorial);
+        manager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -74,10 +79,26 @@ public class TutorialManager : MonoBehaviour
                 tutorialAction = () => SelectACharacter(cleaner);
                 break;
             case 4:
-                tutorialAction = () => SelectAnObjetc(ufo);
+                tutorialAction = () => SelectAnObject(ufo);
                 break;
             case 5:
-
+                tutorialAction = RightClick;
+                break;
+            case 6:
+                tutorialAction = () => SelectACharacter(agent);
+                break;
+            case 7:
+                reporter.FreeTheReporter();
+                tutorialAction = TrapReporter;
+                break;
+            case 8:
+                tutorialAction = FinishCleaning;
+                break;
+            case 9:
+                tutorialAction = EnterToGoToBase;
+                tutorialUI.okBtn.onClick.AddListener(GoBackBase);
+                tutorialUI.okBtn.gameObject.SetActive(true);
+                break;
             default:
                 tutorialAction = EnterNextTutorial;
                 tutorialUI.okBtn.onClick.AddListener(NextTutorial);
@@ -127,7 +148,7 @@ public class TutorialManager : MonoBehaviour
         NextTutorial();
     }
 
-    void SelectAnObjetc(InteractableObject obj)
+    void SelectAnObject(InteractableObject obj)
     {
         while (!obj.IsSelected())
         {
@@ -136,8 +157,43 @@ public class TutorialManager : MonoBehaviour
         NextTutorial();
     }
 
+    void RightClick()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            NextTutorial();
+        }
+    }
+
+    void TrapReporter()
+    {
+        if (reporter.IsReporterTrap())
+        {
+            NextTutorial();
+        }
+    }
+
     public bool AlienShipCanBeDestroyed()
     {
-        return tutorialIndex > 13;
+        return tutorialIndex > 15;
+    }
+
+    void FinishCleaning()
+    {
+        while (!manager.isGameOver) return;
+        NextTutorial();
+    }
+
+    void EnterToGoToBase()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            GoBackBase();
+        }
+    }
+
+    void GoBackBase()
+    {
+        LoaderManager.LoadScene(OfficeManager.sceneName);
     }
 }

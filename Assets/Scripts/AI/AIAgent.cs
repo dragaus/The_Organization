@@ -1,18 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
-public class AIAgent : MonoBehaviour
+public class AIAgent : AIPlayer
 {
-    internal NavMeshAgent agent;
-    internal Animator anim;
-
-    internal bool isMoving = false;
-
-    internal const string animIsMoving = "IsMoving";
-    internal const string animIsWorking = "IsWorking";
     // Start is called before the first frame update
     void Start()
     {
@@ -22,34 +13,22 @@ public class AIAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        EndMovement();
     }
 
-    internal virtual void EndMovement()
+    private void OnTriggerEnter(Collider target)
     {
-        if (anim != null && isMoving)
+        if (target.CompareTag("Reporter"))
         {
-            bool isMovementLeft = agent.remainingDistance > 0.1f;
-            if (!isMovementLeft)
-            {
-                anim.SetBool(animIsMoving, false);
-                isMoving = false;
-            }
+            BeginWork();
         }
     }
 
-    internal virtual void Initialization()
+    private void OnTriggerExit(Collider target)
     {
-        agent = GetComponent<NavMeshAgent>();
-
-        anim = GetComponent<Animator>();
-    }
-
-    public virtual void MoveAgentToNewPos(Vector3 newPos)
-    {
-        agent.SetDestination(newPos);
-        isMoving = true;
-        anim.SetBool(animIsMoving, true);
-
+        if (target.CompareTag("Reporter"))
+        {
+            EndWork();
+        }
     }
 }

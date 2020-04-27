@@ -4,16 +4,18 @@ Zoom in or out with the mouse wheel._2
 You have two kind of personnel: Agents and Cleaners._0
 Cleaners are hiding evidence specialists._0
 Let's clean this scene right now._0
-Click on your cleaner._3
+Left click on your cleaner._3
 Select now the Spaceship._4
+To Deselect your personnel press right click_5
 While the cleaners are doing their job the possibility of been caught grows._0
 If a reporter sight enters in the red circle, the public could find about The Organization._0
 The Agents job is to keep The Organization hide from the public._0
 No one will try to pass by the area than an agent is looking that's the green circle._0
-If a reporter enters in the green circle the agent will stop him for a while._0
-Block the reporter._5
+If a reporter enters in the green circle the agent will stoped the reporrter and send it away._0
+Select your Agent._6
+Block the reporter._7
 When the job It’s done the evidences will be pack in boxes._0
 A Trailer Truck will be near of the area._0
-To Finish the mission the cleaners should put everything on the Truck._6
+To Finish the mission the cleaners should put the boxes into the Truck._8
 You have finish the cleaning._0
-Let’s return to the base._7
+Let’s return to the base._9

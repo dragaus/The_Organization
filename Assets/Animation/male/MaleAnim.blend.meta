@@ -12,6 +12,12 @@ ModelImporter:
   - first:
       74: -1609281748187839663
     second: Scene
+  - first:
+      74: -559546640952028562
+    second: Stop
+  - first:
+      74: 8418673731455245762
+    second: Photo
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -41,18 +47,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Scene
+      name: Up_Work
       takeName: Scene
       internalID: 0
-      firstFrame: 0
-      lastFrame: 100
+      firstFrame: 1
+      lastFrame: 79
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -68,13 +74,42 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 80
     - serializedVersion: 16
-      name: Up_Work
+      name: Stop
       takeName: Scene
       internalID: 0
-      firstFrame: 1
-      lastFrame: 79
+      firstFrame: 81
+      lastFrame: 160
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Photo
+      takeName: Scene
+      internalID: 0
+      firstFrame: 162
+      lastFrame: 262
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -300,23 +335,23 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Cleaner(Clone)
+    - name: ReporterGirl(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0.00000089079515, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Light
-      parentName: Cleaner(Clone)
+      parentName: ReporterGirl(Clone)
       position: {x: -4.0762453, y: 5.903862, z: -1.005454}
       rotation: {x: 0.1690757, y: -0.7558804, z: 0.27217135, w: 0.5709475}
       scale: {x: 1, y: 0.99999994, z: 1}
-    - name: Camera
-      parentName: Cleaner(Clone)
+    - name: Camera.001
+      parentName: ReporterGirl(Clone)
       position: {x: -7.3588915, y: 4.958309, z: 6.925791}
       rotation: {x: 0.21255732, y: 0.90479696, z: -0.08438931, w: -0.35922182}
       scale: {x: 0.99999994, y: 1, z: 1}
     - name: Bip001
-      parentName: Cleaner(Clone)
+      parentName: ReporterGirl(Clone)
       position: {x: -0, y: 0.45108902, z: -0.036125187}
       rotation: {x: -0.50000036, y: 0.49999964, z: 0.4999996, w: 0.5000004}
       scale: {x: 0.025399998, y: 0.025399998, z: 0.0254}
@@ -337,12 +372,12 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1, z: 0.99999994}
     - name: Bip001 L Clavicle
       parentName: Bip001 Spine
-      position: {x: -13.062162, y: 0.0044441223, z: 8.619953}
+      position: {x: -13.062162, y: 0.0044441214, z: 8.619953}
       rotation: {x: 0.7071068, y: -0.000000030908623, z: -0.7071068, w: 0.000000030908623}
       scale: {x: 1.0000005, y: 1.0000001, z: 1.0000001}
     - name: Bip001 L UpperArm
       parentName: Bip001 L Clavicle
-      position: {x: -4.3134775, y: 0.000002490593, z: 0.0000045299703}
+      position: {x: -4.3134775, y: 0.0000024906067, z: 0.0000045299703}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 0.9999998, y: 1.0000001, z: 1.0000004}
     - name: Bip001 L Forearm
@@ -362,12 +397,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 R Clavicle
       parentName: Bip001 Spine
-      position: {x: -13.062162, y: 0.0044918056, z: -8.619953}
+      position: {x: -13.062162, y: 0.0044918046, z: -8.619953}
       rotation: {x: 0.7071068, y: -0.000000030908623, z: 0.7071068, w: -0.000000030908623}
       scale: {x: 1.0000004, y: 0.99999976, z: 0.9999999}
     - name: Bip001 R UpperArm
       parentName: Bip001 R Clavicle
-      position: {x: -4.3134785, y: 0.00000051133065, z: -0.0000023842072}
+      position: {x: -4.3134785, y: 0.0000005113343, z: -0.0000023842072}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000004, y: 1.0000005, z: 1.0000004}
     - name: Bip001 R Forearm
@@ -385,6 +420,11 @@ ModelImporter:
       position: {x: -2.9098172, y: 0.39206237, z: 3.633139}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 0.9999995, y: 0.9999991, z: 0.9999851}
+    - name: Camera
+      parentName: R_hand_container
+      position: {x: -3.7199948, y: -0.8404188, z: -1.5475025}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 5.234965, y: 5.2349234, z: 5.2349567}
     - name: R_hand_container_end
       parentName: R_hand_container
       position: {x: -0, y: 4.671252, z: 0}
@@ -392,19 +432,19 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Neck
       parentName: Bip001 Spine
-      position: {x: -17.409918, y: 0.074590676, z: 0.00000055511305}
+      position: {x: -17.40992, y: 0.074590676, z: 0.00000055308215}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000005}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000006}
     - name: Bip001 Head
       parentName: Bip001 Neck
-      position: {x: -3.5136127, y: -0.00000047506788, z: 0.0000001386518}
+      position: {x: -3.5136127, y: -0.0000004713426, z: 0.00000013865733}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
     - name: Bip001 HeadNub
       parentName: Bip001 Head
-      position: {x: -22.042013, y: -0.0000000012185623, z: -0.000000957078}
+      position: {x: -22.042013, y: 0.0000000014812728, z: -0.0000009570783}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000001}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000004}
     - name: Bip001 HeadNub_end
       parentName: Bip001 HeadNub
       position: {x: -0, y: 14.542273, z: 0}
@@ -412,14 +452,14 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: HEAD_CONTAINER
       parentName: Bip001 Head
-      position: {x: -6.601715, y: 2.4524703, z: 0.00001115745}
+      position: {x: -6.601715, y: 2.45247, z: 0.000011157446}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.9999999, y: 0.99999994, z: 1}
-    - name: head_00
+      scale: {x: 0.9999999, y: 1.0000001, z: 1}
+    - name: f_head_07
       parentName: HEAD_CONTAINER
-      position: {x: -0, y: 0.0000009536743, z: -0.0000023738064}
+      position: {x: -0.000017032515, y: -0.21699715, z: -42.01158}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      scale: {x: 0.8398975, y: 0.8398975, z: 0.83989763}
     - name: HEAD_CONTAINER_end
       parentName: HEAD_CONTAINER
       position: {x: -0, y: 14.542273, z: 0}
@@ -485,16 +525,16 @@ ModelImporter:
       position: {x: -0, y: 0.27166748, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Body_09_jacket
-      parentName: Cleaner(Clone)
+    - name: f_body_18_black_dress
+      parentName: ReporterGirl(Clone)
       position: {x: -0.0000000017215062, y: -0.000000058025563, z: 0.000000001091347}
       rotation: {x: -0.7071068, y: 9.8604406e-14, z: 1.00458616e-13, w: 0.7071067}
       scale: {x: 0.025399996, y: 0.025399996, z: 0.025400003}
-    - name: head_00.001
-      parentName: Cleaner(Clone)
-      position: {x: -0, y: 1.2481515, z: 0}
-      rotation: {x: -0.7071068, y: 3.8461385e-20, z: 3.846139e-20, w: 0.7071067}
-      scale: {x: 0.024946235, y: 0.024946235, z: 0.024946235}
+    - name: Object033
+      parentName: ReporterGirl(Clone)
+      position: {x: -2.0610445, y: 0.17265975, z: 0.028706638}
+      rotation: {x: -0.70710737, y: 0.0000005057618, z: 0.0000005057625, w: 0.70710623}
+      scale: {x: 0.021333396, y: 0.021333396, z: 0.0213334}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -507,7 +547,7 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2975c9010fb21544b9541d6ff09402a6,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 850d05f0a092a5b4781c88c14d9e27e9,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3

@@ -7,7 +7,8 @@ public class InteractableObject : MonoBehaviour
 {
     float workedTime;
     public float workingTime;
-    public Transform[] boxPositions;
+    Transform[] boxPositions;
+    const string boxSpawnerName = "Box Spawner";
 
     const float widthOfOutline = 0.05f;
     const float heightOverObject = 1.5f;
@@ -18,6 +19,17 @@ public class InteractableObject : MonoBehaviour
     Image fillBarInstance;
 
     TutorialManager tutoManager;
+
+    private void Awake()
+    {
+        var boxSpawner = transform.Find(boxSpawnerName);
+        boxPositions = new Transform[boxSpawner.childCount];
+        for (int i = 0; i < boxSpawner.childCount; i++)
+        {
+            boxPositions[i] = boxSpawner.GetChild(i);
+        }
+    }
+
     void Start()
     {
         renders = GetComponentsInChildren<Renderer>();
@@ -25,10 +37,14 @@ public class InteractableObject : MonoBehaviour
         tutoManager = FindObjectOfType<TutorialManager>();
     }
 
-
     void Update()
     {
 
+    }
+
+    public int AmountOfBoxes()
+    {
+        return boxPositions.Length;
     }
 
     private void OnMouseEnter()
@@ -51,7 +67,6 @@ public class InteractableObject : MonoBehaviour
 
     public bool IsSelected()
     {
-        Debug.Log($"Number of cleaners {cleanersInteracting.Count}");
         return cleanersInteracting.Count > 0;
     }
 
@@ -82,6 +97,7 @@ public class InteractableObject : MonoBehaviour
                 cleaner.FreeThePlayer();
             }
             Destroy(fillBarInstance.transform.parent.gameObject);
+            FindObjectOfType<GameManager>().DestroyAnInteractable(boxPositions, gameObject);
         }
     }
 }

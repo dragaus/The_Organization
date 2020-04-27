@@ -6,6 +6,15 @@ public class AICleaner : AIPlayer
 {
 
     InteractableObject objectToInteract;
+    GrabableObjects objectToGrab;
+
+    StorageObject truck;
+
+    Transform holderPlace;
+
+    bool isGoingToTruck;
+    bool isGoingToBox;
+    public bool isHoldingSomething;
     void Start()
     {
         Initialization();
@@ -17,19 +26,10 @@ public class AICleaner : AIPlayer
         Clean();
     }
 
-    private void OnMouseEnter()
+    internal override void Initialization()
     {
-        HighlightAPlayer();
-    }
-
-    private void OnMouseExit()
-    {
-        HideOutline();
-    }
-
-    private void OnMouseDown()
-    {
-        SelectAPlayer();
+        base.Initialization();
+        holderPlace = transform.Find("BoxHolder");
     }
 
     public void SetObjectToInteract(InteractableObject interactable)
@@ -37,10 +37,24 @@ public class AICleaner : AIPlayer
         objectToInteract = interactable;
     }
 
+    public void SetObjectToGrab(GrabableObjects grabable)
+    {
+        objectToGrab = grabable;
+        isGoingToBox = true;
+    }
+
+    public void GoToTruck(StorageObject truckToGo)
+    {
+        truck = truckToGo;
+        isGoingToTruck = true;
+    }
+
     public override void MoveAgentToNewPos(Vector3 newPos)
     {
         FreeThePlayer();
         base.MoveAgentToNewPos(newPos);
+        isGoingToBox = false;
+        isGoingToTruck = false;
     }
 
     internal override void EndMovement()
@@ -49,9 +63,21 @@ public class AICleaner : AIPlayer
         if (objectToInteract != null && !isWorking && !isMoving)
         {
             objectToInteract.GetAPerson(this);
-            isWorking = true;
             influenceArea.transform.localScale *= 2f;
-            anim.SetBool(animIsWorking, isWorking);
+            GetComponent<CapsuleCollider>().radius = influenceArea.transform.localScale.x / 2;
+            BeginWork();
+        }
+        if (objectToGrab != null && !isWorking && !isMoving)
+        {
+            isHoldingSomething = true;
+            objectToGrab.transform.position = holderPlace.position;
+            objectToGrab.transform.rotation = holderPlace.rotation;
+            objectToGrab.transform.parent = holderPlace;
+
+        }
+        if (isHoldingSomething && truck != null && !isMoving)
+        {
+            StorageObject();
         }
     }
 
@@ -60,9 +86,29 @@ public class AICleaner : AIPlayer
         if (objectToInteract != null && isWorking)
         {
             objectToInteract = null;
-            isWorking = false;
-            anim.SetBool(animIsWorking, isWorking);
+            EndWork();
             influenceArea.transform.localScale *= 0.5f;
+            GetComponent<CapsuleCollider>().radius = influenceArea.transform.localScale.x / 2;
+        }
+        if (objectToGrab != null && !isGoingToBox && !isHoldingSomething)
+        {
+            objectToGrab = null;
+        }
+        if (objectToGrab != null && isHoldingSomething && !isGoingToTruck)
+        {
+            truck = null;
+        }
+    }
+
+    public void StorageObject()
+    {
+        if (objectToGrab != null)
+        {
+            truck.DepositABox(objectToGrab.gameObject);
+            objectToGrab = null;
+            truck = null;
+            isHoldingSomething = false;
+            isGoingToTruck = false;
         }
     }
 

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIPlayer : AIAgent
+public class AIPlayer : AICharacter
 {
     public bool isSelected;
-    public bool isWorking;
     internal GameManager manager;
     internal Renderer[] meshRenderers;
     internal GameObject influenceArea;
