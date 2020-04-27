@@ -60,6 +60,7 @@ public class MenuManager : MonoBehaviour
     void PlayGame()
     {
         GameSettingsManager.currentLevel = 0;
+        GameSettingsManager.awerenessLevel = 0;
         LoaderManager.LoadScene(OfficeManager.sceneName);
     }
 }

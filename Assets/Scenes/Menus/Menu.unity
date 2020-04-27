@@ -3312,6 +3312,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settings Btn
       objectReference: {fileID: 0}
+    - target: {fileID: 4379545083804438398, guid: ef09ba0b8b8ed4946a083c363e28522b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4379545083804438399, guid: ef09ba0b8b8ed4946a083c363e28522b,
         type: 3}
       propertyPath: m_LocalPosition.x
