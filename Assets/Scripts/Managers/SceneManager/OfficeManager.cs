@@ -174,6 +174,7 @@ public class OfficeManager : MonoBehaviour
         {
             officeUI.chatInput.ActivateInputField();
         }
+        ChangeChatButtonActions(actionToDo);
     }
 
     void AcceptMessage()
